@@ -48,6 +48,8 @@ GROUP BY c.id_clients, c.fullname;
 ```
 ## Technologies Used
 - Node.js – Backend server
+- Express.js – API framework
+- Bootstrap – Frontend styling
 - MySQL – Relational database
 - Postman – API testing
 - Draw.io – Database model design
