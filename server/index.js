@@ -6,17 +6,15 @@ const app = express();
 app.use(cors()); // This allows the backend application to be consumed by a frontend application.
 app.use(express.json()); // The information will be in JSON format.
 
-app.get("/", async (req, res) => {
   //req: info goes in     res:info comes out
-  res.send("server online");
-});
+
 
 // CRUD for clients
 // GET
 app.get("/clients", async (req, res) => {
   try {
     const query = `
-    SELECT fullname,user_identification,direction,email,telephone
+    SELECT id_clients,fullname,user_identification,direction,email,telephone
     FROM clients;`;
 
     const [rows] = await pool.query(query);

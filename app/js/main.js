@@ -2,85 +2,107 @@ const API_URL = "http://localhost:3000/clients";
 const tableClients = document.getElementById("tableClients");
 const clientForm = document.getElementById("clientForm");
 
-// load list
+// load clients
 async function loadClients() {
+  try {
     const res = await fetch(API_URL);
     const data = await res.json();
 
-    tableClients.innerHTML = "";
-    data.forEach(p => {
-        tableClients.innerHTML += `
-            <tr>
-                <td>${p.id_clients}</td>
-                <td>${p.fullname}</td>
-                <td>${p.identification}</td>
-                <td>${p.direction}</td>
-                <td>${p.email}</td>
-                <td>${p.telephone}</td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="editarPrestamo(${p.id_clients})">Editar</button>
-                    <button class="btn btn-danger btn-sm" onclick="eliminarPrestamo(${p.id_clients})">Eliminar</button>
-                </td>
-            </tr>
-        `;
+    data.forEach((c) => {
+      tableClients.innerHTML += `
+        <tr>
+            <td>${c.id_clients}</td>
+            <td>${c.fullname}</td>
+            <td>${c.user_identification}</td>
+            <td>${c.direction || ""}</td>
+            <td>${c.email || ""}</td>
+            <td>${c.telephone || ""}</td>
+            <td>
+                <button class="btn btn-success btn-sm btn-edit" data-id="${ c.id_clients}">Editar</button>
+                <button class="btn btn-danger btn-sm btn-delete" data-id="${c.id_clients}">Eliminar</button>
+            </td>
+        </tr>
+    `;
     });
+  } catch (err) {
+    console.error("Error loading clients:", err);
+  }
 }
 
-// save / update
-prestamoForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+// create / update client
+clientForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const clients = {
-        id_clients: document.getElementById("id_clients").value,
-        fullname: document.getElementById("fullname").value,
-        identification: document.getElementById("identification").value,
-        direction: document.getElementById("direction").value,
-        email: document.getElementById("email").value,
-        telephone: document.getElementById("telephone").value,
-    };
+  const id_clients = document.getElementById("id_clients").value;
+  const clients = {
+    fullname: document.getElementById("fullname").value,
+    user_identification: document.getElementById("user_identification").value,
+    direction: document.getElementById("direction").value,
+    email: document.getElementById("email").value,
+    telephone: document.getElementById("telephone").value,
+  };
 
-    const id_clients = document.getElementById("id_clients").value;
-
-    if (id_prestamo) {
-        // UPDATE
-        await fetch(`${API_URL}/${id_prestamo}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(prestamo)
-        });
+  try {
+    let res;
+    if (id_clients) {
+      // UPDATE
+      res = await fetch(`${API_URL}/${id_clients}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(clients),
+      });
     } else {
-        // CREATE
-        await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(prestamo)
-        });
+      // CREATE
+      res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(clients),
+      });
     }
 
-    prestamoForm.reset();
-    cargarPrestamos();
+    if (!res.ok) throw new Error(await res.text());
+
+    clientForm.reset();
+    loadClients();
+  } catch (err) {
+    console.error("Error saving clients:", err);
+    alert("The client could not be saved. Check the console.");
+  }
 });
 
-// Editar
-window.editarPrestamo = async (id) => {
-    const res = await fetch(`${API_URL}/${id}`);
-    const p = await res.json();
+// edite / delete
+tableClients.addEventListener("click", async (e) => {
 
-    document.getElementById("id_prestamo").value = p.id_prestamo;
-    document.getElementById("id_usuario").value = p.id_usuario;
-    document.getElementById("isbn").value = p.isbn;
-    document.getElementById("fecha_prestamo").value = p.fecha_prestamo.split("T")[0];
-    document.getElementById("fecha_devolucion").value = p.fecha_devolucion.split("T")[0];
-    document.getElementById("estado").value = p.estado;
-};
+  if (e.target.classList.contains("btn-edit")) {
+    const id = e.target.dataset.id;
+    try {
+      const res = await fetch(`${API_URL}/${id}`);
+      const c = await res.json();
 
-// Eliminar
-window.eliminarPrestamo = async (id) => {
-    if (confirm("¿Seguro que quieres eliminar este préstamo?")) {
-        await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-        cargarPrestamos();
+      document.getElementById("id_clients").value = c.id_clients;
+      document.getElementById("fullname").value = c.fullname;
+      document.getElementById("user_identification").value =
+        c.user_identification;
+      document.getElementById("direction").value = c.direction;
+      document.getElementById("email").value = c.email;
+      document.getElementById("telephone").value = c.telephone;
+    } catch (err) {
+      console.error("Error editando cliente:", err);
     }
-};
+  }
+
+  if (e.target.classList.contains("btn-delete")) {
+    const id = e.target.dataset.id;
+    if (confirm("¿Are you sure you want to delete this client?")) {
+      try {
+        await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        loadClients();
+      } catch (err) {
+        console.error("Error deleting customer:", err);
+      }
+    }
+  }
+});
 
 // Inicializar
-cargarPrestamos();
+loadClients();
