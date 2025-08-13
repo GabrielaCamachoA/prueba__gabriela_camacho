@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "ee1bdb6b-03f8-4e7c-9d22-b2032c5f08eb",
+		"name": "prueba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47354073",
+		"_collection_link": "https://gabrielacacosta31-5868801.postman.co/workspace/Gabriela-Camacho's-Workspace~70a7928d-b252-4f97-81b8-8d2e0ec32282/collection/47354073-ee1bdb6b-03f8-4e7c-9d22-b2032c5f08eb?action=share&source=collection_link&creator=47354073"
+	},
+	"item": [
+		{
+			"name": "loans",
+			"item": [
+				{
+					"name": "get all loans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/loans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/loans/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"loans",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create  a new loan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_user\": 30,\r\n    \"isbn\": \"978-0-01-681154-8\",\r\n   \"loan_date\": \"2025-08-12\",\r\n   \"return_date\": \"2025-09-12\",\r\n   \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/loans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_user\": 29,\r\n    \"isbn\": \"978-0-01-681154-8\",\r\n   \"loan_date\": \"2025-08-12\",\r\n   \"return_date\": \"2025-09-12\",\r\n   \"status\": \"delivered\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/loans/29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"loans",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
