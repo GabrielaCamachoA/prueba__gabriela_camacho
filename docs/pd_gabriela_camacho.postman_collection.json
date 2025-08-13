@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "ee1bdb6b-03f8-4e7c-9d22-b2032c5f08eb",
+		"name": "pd_gabriela_camacho",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47354073",
+		"_collection_link": "https://gabrielacacosta31-5868801.postman.co/workspace/Gabriela-Camacho's-Workspace~70a7928d-b252-4f97-81b8-8d2e0ec32282/collection/47354073-ee1bdb6b-03f8-4e7c-9d22-b2032c5f08eb?action=share&source=collection_link&creator=47354073"
+	},
+	"item": [
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "get all clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create  a new loan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"Gaby Camacho\",\r\n    \"user_identification\": \"149186957\",\r\n    \"direction\": \"UNA DavisFPO AP 78518\",\r\n    \"email\": \"gaby@gamil.com\",\r\n    \"telephone\": \"(873)222-2692x58980\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"Ross Acosta\",\r\n    \"user_identification\": \"142486957\",\r\n    \"direction\": \"UNA DavisFPO AP 78518\",\r\n    \"email\": \"ross@gamil.com\",\r\n    \"telephone\": \"(873)452-2692x58980\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/clients/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_user\": 29,\r\n    \"isbn\": \"978-0-01-681154-8\",\r\n   \"loan_date\": \"2025-08-12\",\r\n   \"return_date\": \"2025-09-12\",\r\n   \"status\": \"delivered\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/clients/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"100"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
