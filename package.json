@@ -1,26 +1,30 @@
 {
-  "name": "prueba_base_datos",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "name": "prueba__gabriela_camacho",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "vite": "^7.1.2"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielaCamachoA/prueba__gabriela_camacho.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "vite": "^7.1.2"
+  "bugs": {
+    "url": "https://github.com/GabrielaCamachoA/prueba__gabriela_camacho/issues"
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "csv-parser": "^3.2.0",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "mysql2": "^3.14.3",
-    "nodemon": "^3.1.10"
-  }
+  "homepage": "https://github.com/GabrielaCamachoA/prueba__gabriela_camacho#readme",
+  "description": ""
 }

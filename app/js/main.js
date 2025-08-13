@@ -1,44 +1,45 @@
-const API_URL = "http://localhost:3000/prestamos";
-const tablaPrestamos = document.getElementById("tablaPrestamos");
-const prestamoForm = document.getElementById("prestamoForm");
+const API_URL = "http://localhost:3000/clients";
+const tableClients = document.getElementById("tableClients");
+const clientForm = document.getElementById("clientForm");
 
-// Cargar lista
-async function cargarPrestamos() {
+// load list
+async function loadClients() {
     const res = await fetch(API_URL);
     const data = await res.json();
 
-    tablaPrestamos.innerHTML = "";
+    tableClients.innerHTML = "";
     data.forEach(p => {
-        tablaPrestamos.innerHTML += `
+        tableClients.innerHTML += `
             <tr>
-                <td>${p.id_prestamo}</td>
-                <td>${p.usuario}</td>
-                <td>${p.libro}</td>
-                <td>${p.fecha_prestamo}</td>
-                <td>${p.fecha_devolucion}</td>
-                <td>${p.estado}</td>
+                <td>${p.id_clients}</td>
+                <td>${p.fullname}</td>
+                <td>${p.identification}</td>
+                <td>${p.direction}</td>
+                <td>${p.email}</td>
+                <td>${p.telephone}</td>
                 <td>
-                    <button class="btn btn-warning btn-sm" onclick="editarPrestamo(${p.id_prestamo})">Editar</button>
-                    <button class="btn btn-danger btn-sm" onclick="eliminarPrestamo(${p.id_prestamo})">Eliminar</button>
+                    <button class="btn btn-warning btn-sm" onclick="editarPrestamo(${p.id_clients})">Editar</button>
+                    <button class="btn btn-danger btn-sm" onclick="eliminarPrestamo(${p.id_clients})">Eliminar</button>
                 </td>
             </tr>
         `;
     });
 }
 
-// Guardar / Actualizar
+// save / update
 prestamoForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const prestamo = {
-        id_usuario: document.getElementById("id_usuario").value,
-        isbn: document.getElementById("isbn").value,
-        fecha_prestamo: document.getElementById("fecha_prestamo").value,
-        fecha_devolucion: document.getElementById("fecha_devolucion").value,
-        estado: document.getElementById("estado").value
+    const clients = {
+        id_clients: document.getElementById("id_clients").value,
+        fullname: document.getElementById("fullname").value,
+        identification: document.getElementById("identification").value,
+        direction: document.getElementById("direction").value,
+        email: document.getElementById("email").value,
+        telephone: document.getElementById("telephone").value,
     };
 
-    const id_prestamo = document.getElementById("id_prestamo").value;
+    const id_clients = document.getElementById("id_clients").value;
 
     if (id_prestamo) {
         // UPDATE

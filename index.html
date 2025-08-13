@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- titulo, formulario, tablas vacias donde se veran los datos, script main-->
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -23,32 +12,30 @@
 
 <body class="p-4">
 
-    <h1 class="mb-4">Gestión de Préstamos</h1>
+    <h1 class="mb-4">Client management</h1>
 
-    <!-- Formulario -->
-    <form id="prestamoForm" class="mb-4">
-        <input type="hidden" id="id_prestamo">
+    <!-- Form -->
+    <form id="clientForm" class="mb-4">
+        <input type="hidden" id="id_id_clients">
 
         <div class="row g-3">
             <div class="col-md-2">
-                <input type="number" class="form-control" id="id_usuario" placeholder="ID Usuario" required>
+                <input type="number" class="form-control" id="id_clients" placeholder="ID client" required>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control" id="isbn" placeholder="ISBN" required>
+                <input type="text" class="form-control" id="fullname" placeholder="fullname" required>
             </div>
             <div class="col-md-2">
-                <input type="date" class="form-control" id="fecha_prestamo" required>
+                <input type="text" class="form-control" id="idetification" placeholder="identification"required>
             </div>
             <div class="col-md-2">
-                <input type="date" class="form-control" id="fecha_devolucion" required>
+                <input type="text" class="form-control" id="direction" placeholder="direction"required>
             </div>
             <div class="col-md-2">
-                <select class="form-select" id="estado" required>
-                    <option value="">Estado</option>
-                    <option value="activo">Activo</option>
-                    <option value="devuelto">Devuelto</option>
-                    <option value="retrasado">Retrasado</option>
-                </select>
+                <input type="email" class="form-control" id="email"placeholder="email" required>
+            </div>
+            <div class="col-md-2">
+                <input type="tel" class="form-control" id="telephone" placeholder="telephone"required>
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary w-100">Guardar</button>
@@ -56,21 +43,21 @@
         </div>
     </form>
 
-    <!-- Tabla -->
+    <!-- Table -->
     <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Usuario</th>
-                <th>Libro</th>
-                <th>Fecha Préstamo</th>
-                <th>Fecha Devolución</th>
-                <th>Estado</th>
+                <th>Client</th>
+                <th>identification</th>
+                <th>direction</th>
+                <th>email</th>
+                <th>telephone</th>
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody id="tablaPrestamos">
-            <!-- Datos dinámicos -->
+        <tbody id="tableClients">
+            <!-- dynamics datas -->
         </tbody>
     </table>
 
