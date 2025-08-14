@@ -8,6 +8,30 @@ app.use(express.json()); // The information will be in JSON format.
 
   //req: info goes in     res:info comes out
 
+// advanced queries
+// total payment of clients
+app.get("/clients/total", async (req, res) => {
+  try {
+    const query = `
+       SELECT 
+          c.fullname,
+          SUM(i.amount_paid) AS total_paid
+          FROM clients c
+          JOIN transactions t ON c.id_clients = t.id_clients
+          JOIN invoice i ON t.id_invoice = i.id_invoice
+          GROUP BY c.id_clients, c.fullname; `;
+
+    const [rows] = await pool.query(query);
+    return res.json(rows);
+  } catch (error) {
+    res.status(500).json({
+      status: "error ",
+      endpint: req.originalUrl,
+      method: req.method,
+      message: error.message,
+    });
+  }
+});
 
 // CRUD for clients
 // GET
@@ -124,7 +148,7 @@ app.delete("/clients/:id_clients", async (req, res) => {
 
     const [result] = await pool.query(query, [id_clients]);
     if (result.affectedRows > 0) {
-      return res.json({ mensaje: "Delete cliente" });
+      return res.json({ mensaje: "Deleted client" });
     } else {
       return res.status(404).json({ mensaje: "Client not found" });
     }
@@ -138,30 +162,6 @@ app.delete("/clients/:id_clients", async (req, res) => {
   }
 });
 
-// advanced queries
-// total payment of clients
-app.get("/clients/total-payment", async (req, res) => {
-  try {
-    const [rows] = await pool.query(`
-          SELECT 
-          c.fullname,
-          SUM(i.amount_paid) AS total_paid
-          FROM clients c
-          JOIN transaction t ON c.id_clients = t.id_clients
-          JOIN invoice i ON t.id_invoice = i.id_invoice
-          GROUP BY c.id_clients, c.fullname;  
-        `);
-
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({
-      status: "error",
-      endpoint: req.originalUrl,
-      method: req.method,
-      message: error.message,
-    });
-  }
-});
 app.listen(3000, () => {
   console.log("El servidor inicio y esta corriendo en http://localhost:3000");
 });

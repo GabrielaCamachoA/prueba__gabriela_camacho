@@ -23,7 +23,7 @@ export async function loadTransaction() {
         })
         .on("end", async () => {
             try {
-                const sql= 'INSERT INTO transactions(id_transaction,transaction_amount,date_hour_transaction,id_status,id_type,id_clients,id_platform,id_invoice) VALUES ?';
+                const sql= 'INSERT INTO transactions (id_transaction,transaction_amount,date_hour_transaction,id_status,id_type,id_clients,id_platform,id_invoice) VALUES ?';
                 const [result] = await pool.query(sql, [transaction]);
                 console.log(`They inserted ${result.affectedRows} transactions`);
                 resolve();

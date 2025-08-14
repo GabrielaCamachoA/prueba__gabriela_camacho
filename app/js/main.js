@@ -30,8 +30,7 @@ async function loadClients() {
 }
 
 // create / update client
-clientForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+clientForm.addEventListener("submit", async () => {
 
   const id_clients = document.getElementById("id_clients").value;
   const clients = {

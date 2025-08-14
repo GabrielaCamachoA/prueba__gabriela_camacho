@@ -13,15 +13,3 @@ export const pool = mysql.createPool({
   queueLimit: 0 // maximum number of requests waiting (0= no limit)
 });
 
-async function test_connection() {
-    try {
-       const connection = await pool.getConnection();
-       console.log("Conexion exitosa");
-       connection.release();
-        
-    } catch (error) {
-       console.log("Error en la conexion", error);
-        
-    }
-}
-test_connection()
