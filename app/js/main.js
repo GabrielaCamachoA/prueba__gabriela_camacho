@@ -70,7 +70,7 @@ clientForm.addEventListener("submit", async () => {
 });
 
 // edite / delete
-tableClients.addEventListener("click", async (e) => {
+tableClients.addEventListener("click", async () => {
 
   if (e.target.classList.contains("btn-edit")) {
     const id = e.target.dataset.id;

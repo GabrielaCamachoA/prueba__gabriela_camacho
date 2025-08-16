@@ -45,7 +45,7 @@ app.get("/clients", async (req, res) => {
     return res.json(rows);
   } catch (error) {
     res.status(500).json({
-      status: "error ",
+      status: "error ", 
       endpint: req.originalUrl,
       method: req.method,
       message: error.message,
